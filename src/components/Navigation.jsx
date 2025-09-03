@@ -16,12 +16,12 @@ export default function Navigation() {
         <nav className = 'w-[40%] mt-16 flex justify-around align-middle border border-yellow-200 rounded-lg '>
 
 
-            {navigation.map((item) => (
+            {navigation.map((item , index) => (
         
-            <NavLink
+            <NavLink 
                 to= {item.href}
                 end
-
+                key={index}
                 className = {({isActive}) => {
                     return `w-full text-base text-lg text-center font-mono m-2.5
                         ${isActive ? 'bg-yellow-200 text-gray-800' : 'bg-gray-800 text-gray-500 hover:text-yellow-200 active:bg-yellow-200 active:text-gray-800'}
