@@ -4,6 +4,7 @@ export const CryptoContext = createContext({});
 
 export const CryptoProvider = ({ children }) => {
   const [cryptoData, setCryptoData] = useState();
+  const [searchData, setSearchData] = useState();
 
   const API_KEY = import.meta.env.VITE_API_URL;
 
@@ -32,12 +33,38 @@ export const CryptoProvider = ({ children }) => {
     }
   };
 
+   const fetchSearchData = async (query) => {
+    try {
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          "x-cg-demo-api-key": API_KEY,
+        },
+      };
+
+      const data = await fetch(
+        `https://api.coingecko.com/api/v3/search?query=${query}`,
+        options
+      )
+        .then((res) => res.json())
+        
+      console.log(data);
+      setSearchData(data);
+
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useLayoutEffect(() => {
     fetchCryptoData();
+
   }, []);
 
   return (
-    <CryptoContext.Provider value={{ cryptoData }}>
+    <CryptoContext.Provider value={{ cryptoData, searchData, fetchSearchData }}>
       {children}
     </CryptoContext.Provider>
   );
