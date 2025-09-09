@@ -42,12 +42,12 @@ export function useDebounce(value, timeDelay){
 export default function Search() {
 
     const[searchText,setSearchText] = useState("");
-    let {searchData,fetchSearchData} = useContext(CryptoContext);
+    let {searchData,fetchSearchData,setCoinSearch,setSearchData} = useContext(CryptoContext);
 
 
     //Using debounce function
 
-    const debounceSearchData = useDebounce(searchText,800);
+    const debounceSearchData = useDebounce(searchText,600);
 
     useEffect(()=>{
 
@@ -68,9 +68,20 @@ export default function Search() {
         e.preventDefault();
         let query = e.target.value;
         setSearchText(query);
-        
+
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetchSearchData(searchText);
 
 
+    }
+
+    const selectCoin= (coin) => {
+        setCoinSearch(coin);
+        setSearchData("");
+        setSearchText("");
 
     }
 
@@ -80,7 +91,7 @@ export default function Search() {
     return(
         <div className="relative">
 
-            <form className="w-96 flex items-center relative ml-7 font-mono ">
+            <form className="w-96 flex items-center relative ml-7 font-mono " onSubmit={handleSubmit}>
                 <input type="text" name="search" 
                     className="w-full bg-gray-800 border border-transparent rounded outline-0 focus:border-yellow-200
                         required pl-2 placeholder:text-gray-500 "
@@ -115,7 +126,9 @@ export default function Search() {
                         searchData.map((coin) => {
 
                             return(
-                                <li className=" flex items-center ml-4 my-2 cursor-pointer" key={coin.id}>
+                                <li className=" flex items-center ml-4 my-2 cursor-pointer" key={coin.id}
+                                    onClick={() => selectCoin(coin.id)}
+                                >
                                     <img
                                         className="w-[1rem] h-[1rem] mx-1.5"
                                         src={coin.thumb}
@@ -133,7 +146,14 @@ export default function Search() {
 
                         })
 
-                    :<h2> Please Wait...</h2>}
+                    :<div className="w-full h-full flex items-center justify-center">
+
+                        <div className="w-8 h-8 border-4 rounded-full border-yellow-200 border-b-gray-800 animate-spin " role="status"/>
+                        <span className="ml-2">Searching...</span> 
+
+                    </div>
+                    
+                    }
                     
                 </ul>
 
