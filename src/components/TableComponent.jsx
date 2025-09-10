@@ -13,7 +13,7 @@ export default function TableComponent() {
     { name: "7D" },
   ];
 
-  let { cryptoData } = useContext(CryptoContext);
+  let { cryptoData,currency } = useContext(CryptoContext);
 
   return (
     <div className="flex flex-col mt-9 border border-gray-500 rounded">
@@ -72,7 +72,7 @@ export default function TableComponent() {
                   <td className="py-4">{
                         new Intl.NumberFormat("en-US", {
                             style:"currency",
-                            currency:"usd"
+                            currency: currency
 
                         }).format(data.current_price)
                     }</td>
