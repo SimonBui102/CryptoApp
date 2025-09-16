@@ -1,6 +1,7 @@
 import React from 'react'
 import TableComponent from '../components/TableComponent'
 import Filters from '../components/Filters'
+import { Outlet } from 'react-router'
 
 const Crypto = () => {
   return (
@@ -8,6 +9,10 @@ const Crypto = () => {
 
     <Filters/>
     <TableComponent/>
+
+    <Outlet>
+      
+    </Outlet>
 
     </section>
   )

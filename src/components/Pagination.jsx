@@ -48,7 +48,7 @@ const PerPage = () => {
 };
 
 export default function Pagination() {
-  let { page, setPage, totalPages, perPage } = useContext(CryptoContext);
+  let { page, setPage, totalPages, perPage, cryptoData } = useContext(CryptoContext);
 
   let TotalNumber = Math.ceil(totalPages / perPage);
 
@@ -85,6 +85,7 @@ export default function Pagination() {
     }
   };
 
+  if(cryptoData && cryptoData.length != 1) {
   return (
     <div className="flex items-center">
       <PerPage />
@@ -173,5 +174,10 @@ export default function Pagination() {
         </li>
       </ul>
     </div>
-  );
+  );}
+
+  else{
+
+    return null;
+  }
 }
