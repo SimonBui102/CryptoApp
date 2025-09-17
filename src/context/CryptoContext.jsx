@@ -78,7 +78,7 @@ export const CryptoProvider = ({ children }) => {
         options
       ).then((res) => res.json());
 
-      // console.log(data);
+       console.log(data);
       setCoinData(data);
     } catch (error) {
       console.log(error);

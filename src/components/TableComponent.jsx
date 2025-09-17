@@ -86,8 +86,17 @@ export default function TableComponent() {
                       }).format(data.current_price)}
                     </td>
                     <td className="py-4">{data.total_volume}</td>
-                    <td className="py-4">
-                      {data.market_cap_change_percentage_24h}%
+                    <td   className={
+                        data.market_cap_change_percentage_24h > 0
+                          ? "text-green-400 py-4"
+                          : "text-red-400 py-4"
+                      }>
+                      {Number(
+                        data.market_cap_change_percentage_24h
+                      ).toFixed(2)
+                      
+                      
+                      }%
                     </td>
                     <td
                       className={
