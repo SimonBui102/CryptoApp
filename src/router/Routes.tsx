@@ -25,7 +25,11 @@ const routes = [
 
             {
                 path: 'Trending',
-                element: <Trending />
+                element: <Trending />,
+                      children: [{
+                    path:':coinId',
+                    element: <CryptoDetails/>
+                }]
 
             },
 
