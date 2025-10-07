@@ -60,7 +60,16 @@ export default function TrendingCoin({data}) {
                      <img src={data.large} alt={data.name} className='w-[15%] h-auto rounded-full absolute top-2/5 -right-0 -translate-y-2/4 ' />
 
                 </>
-            :null} 
+            :
+             <div className="w-full min-h-[60vh] h-full flex items-center justify-center">
+
+                        <div className="w-8 h-8 border-4 rounded-full border-yellow-200 border-b-gray-800 animate-spin " role="status"/>
+                        <span className="ml-2">Please Wait...</span> 
+
+                    </div>
+        
+   
+            } 
         </div>
 
     )

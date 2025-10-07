@@ -61,7 +61,7 @@ export const CryptoProvider = ({ children }) => {
 
 
   const fetchCoinData = async (coinId) => {
-   
+   setCoinData();
 
     try {
       const options = {

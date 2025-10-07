@@ -35,7 +35,11 @@ const routes = [
 
             {
                 path: 'Saved',
-                element: <Saved />
+                element: <Saved />,
+                children: [{
+                    path:':coinId',
+                    element: <CryptoDetails/>
+                }]
 
             }
 
